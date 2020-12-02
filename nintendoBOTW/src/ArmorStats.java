@@ -10,8 +10,10 @@ import java.util.*; // for scanning user's response
  * I want to take information from the user
  * and make calls to constructors from
  * another java program.
- *
+ * <p>
  * The first goal :I want to check the level of the armor.
+ * <p>
+ * Checked by James Austin
  */
 
 public class ArmorStats {
@@ -26,14 +28,25 @@ public class ArmorStats {
         then you can prompt the user at any point if they want to
         calculate the armor total
         */
-        int[] Zora = {3,5,8,12,20};
-        int[] Ancient = {4,7,12,18,28};
-        int[] Barbarian = {3,5,6,7,11};
+
+        int[] Defense = new int[3];
+        String[] mySet = {"head", "shoulders", "knees"};//new String[3];
+        // with mySet I plan to overwrite the given values with the armor
+        // the player chose to wear
         String[] caps = {"None", "Zora", "Ancient", "Barbarian"};
-        introText(caps);
+        Defense[0] = introText(caps, mySet[0]);
+//        Defense[1] = introText(tunics, mySet[1]);
+//        Defense[2] = introText(shoes, mySet[2]);
+
+        int totalDefense = Defense[0] + Defense[1] + Defense[2];
+        System.out.println("Your total defense value is " + totalDefense + " and you currently wear;" +
+                mySet[0]);
     }
 
-    public static void introText(String[] caps) {
+    public static int introText(String[] caps, String mySet) {
+        int[] Zora = {3, 5, 8, 12, 20};
+        int[] Ancient = {4, 7, 12, 18, 28};
+        int[] Barbarian = {3, 5, 6, 7, 11};
         Scanner clotheSet = new Scanner(System.in);
         System.out.println("The armor is linked to a number, please select what cap you wish to wear");
         System.out.println("1 " + caps[0] + "\n2 " + caps[1] + "\n3 " + caps[2] + "\n4 " + caps[3] + "\n");
@@ -46,12 +59,44 @@ public class ArmorStats {
         */
         // make a loop that acts when an unexpected value is selected
         int cap = clotheSet.nextInt();
+        String setName = caps[cap - 1];
         // the while loop is good when you don't know how many times a sequence may be repeated.
         while (cap > 4 || cap < 1) {
             // write statements to user if they enter unexpected value
-            System.out.println("You chose an invalid option: " + cap + "\nPlease make another selection\n");
+            System.out.println("You chose an invalid option: " + cap +
+                    "\nPlease make another selection or quit the program\n");
             cap = clotheSet.nextInt();
         }
-        System.out.println("You chose " + caps[cap - 1]);
+        System.out.println("You chose " + setName + "\nYou can make another selection or end the program");
+        System.out.println("Please select the level of your cap" +
+                "\nLevel: 1\nLevel: 2\nLevel: 3\nLevel: 4\nLevel: 5");
+        mySet = setName;
+        //mySet should be updating the current region of armor
+        //it is not referencing anything currently
+        cap = clotheSet.nextInt();
+
+        while (cap > 5 || cap < 1) {
+            System.out.println("You chose an invalid option: " + cap +
+                    "\nPlease make another selection or quit the program\n");
+            cap = clotheSet.nextInt();
+        }
+
+        if (setName.equals("Zora")) {
+            //use zora values
+            mySet = "Zora";
+            System.out.println("Your " + setName + " cap has a defense stat of " + Zora[cap - 1]);
+            return Zora[cap - 1];
+        } else if (setName.equals("Ancient")) {
+            //use ancient values
+            System.out.println("Your " + setName + " cap has a defense stat of " + Ancient[cap - 1]);
+            return Ancient[cap - 1];
+        } else if (setName.equals("Barbarian")) {
+            //use barbarian values
+            System.out.println("Your " + setName + " cap has a defense stat of " + Barbarian[cap - 1]);
+            return Barbarian[cap - 1];
+        }
+
+        System.out.println("You chose to forgo this armor, very brave");
+        return 0;
     }
 }

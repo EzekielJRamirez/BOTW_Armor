@@ -32,17 +32,24 @@ public class ArmorRedux {
         int headDefense = 0;
         int armorDefense = 0;
         int legDefense = 0;
-        int[] Zora = {3, 6, 9, 15};
+        int totalDefense = 0;
+
+        System.out.println("Please select which armor you would like to view");
+        System.out.println("1: Zora\t2: Ancient\t3: Barbarian");
+        // this should link to line 44 with the appropriate choice from lines 40-42.
+        int[] Zora = {3, 5, 8, 12, 20};
+        int[] Ancient = {4, 7, 12, 18, 28};
+        int[] Barbarian = {3, 5, 6, 7, 11};
 
         System.out.println("The Zora armor has the following defense values");
         System.out.println("Level 1: " + Zora[0] + "\nLevel 2: " + Zora[1] + "\nLevel 3: "
-                + Zora[2] + "\nLevel 4: " + Zora[3]);
+                + Zora[2] + "\nLevel 4: " + Zora[3] + "\nLevel 5: " + Zora[4]);
 
         System.out.print("Pick the level of armor you want: ");
         // use a scanner to get the level
         Scanner console = new Scanner(System.in);
         int level = console.nextInt();
-        while (level < 1 || level > 4) {
+        while (level < 1 || level > 5) {
             System.out.println("Your selection was invalid, please choose an appropriate option");
             level = console.nextInt();
         }

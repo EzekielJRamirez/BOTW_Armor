@@ -1,0 +1,54 @@
+import java.util.Arrays;
+import java.io.*;
+import java.util.Scanner;
+
+/**
+ * Ezekiel Ramirez
+ * Started 12/22/2020
+ * Assisted by James Austin
+ *
+ * This program will help players build a set of armor and calculate
+ * the value of the set's total defense.
+ * The program currently only calculates for the chest piece taking
+ * information from only one armor set
+ */
+
+/** TODO
+ * Add the other armor sets and create a way for the player to see the value
+ * of each set by choice before deciding the level
+ *
+ * Allow the armor sets to be applied to head variants then leg variants and calculate
+ * the total defense
+ *
+ * Allow the player to go without armor
+ */
+
+public class ArmorRedux {
+    public static void main(String[] args) {
+        System.out.println("This program will display information " +
+                "about armor that the player has equipped.");
+
+        //create an int that will store one value
+        int headDefense = 0;
+        int armorDefense = 0;
+        int legDefense = 0;
+        int[] Zora = {3, 6, 9, 15};
+
+        System.out.println("The Zora armor has the following defense values");
+        System.out.println("Level 1: " + Zora[0] + "\nLevel 2: " + Zora[1] + "\nLevel 3: "
+                + Zora[2] + "\nLevel 4: " + Zora[3]);
+
+        System.out.print("Pick the level of armor you want: ");
+        // use a scanner to get the level
+        Scanner console = new Scanner(System.in);
+        int level = console.nextInt();
+        while (level < 1 || level > 4) {
+            System.out.println("Your selection was invalid, please choose an appropriate option");
+            level = console.nextInt();
+        }
+
+        armorDefense = Zora[level - 1];
+
+        System.out.println("You chose the level " + level + " Zora armor. It has a defense of " + armorDefense);
+    }
+}

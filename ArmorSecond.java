@@ -2,15 +2,14 @@ import java.util.*;
 
 public class ArmorSecond {
     public static void main(String[] args) {
+        // introduce program to user
+        System.out.println("This program will ask you about your armor set up");
         chooseHelm();
     }
 
     public static void chooseHelm() {
         boolean loopHelm;
         Scanner console = new Scanner(System.in);
-
-        // introduce program to user
-        System.out.println("This program will ask you about your armor set up");
 
         // ask the user what armor they want to wear
         System.out.println("What helmet would you like to wear?");
